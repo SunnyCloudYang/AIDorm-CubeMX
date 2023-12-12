@@ -1,9 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    i2c.h
+  * @file    adc.h
   * @brief   This file contains all the function prototypes for
-  *          the i2c.c file
+  *          the adc.c file
   ******************************************************************************
   * @attention
   *
@@ -18,8 +18,8 @@
   */
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __I2C_H__
-#define __I2C_H__
+#ifndef __ADC_H__
+#define __ADC_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,22 +32,15 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern I2C_HandleTypeDef hi2c1;
+extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
-void MX_I2C1_Init(void);
+void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
-#define I2C_SCL(x)      (x ?  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_6,GPIO_PIN_SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_6,GPIO_PIN_RESET) )       
-#define I2C_SDA(x)      (x ?  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,GPIO_PIN_SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,GPIO_PIN_RESET) )       
-#define RD_I2C_SDA      HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_7)   
-
-#define I2C_SDA_OUT()   {GPIOB->CRL &= 0x0FFFFFFF;GPIOB->CRL |= 0x30000000;} 
-#define I2C_SDA_IN()    {GPIOB->CRL &= 0x0FFFFFFF;GPIOB->CRL |= 0x40000000;}
 
 /* USER CODE END Prototypes */
 
@@ -55,5 +48,5 @@ void MX_I2C1_Init(void);
 }
 #endif
 
-#endif /* __I2C_H__ */
+#endif /* __ADC_H__ */
 

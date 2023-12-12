@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "i2c.h"
 #include "gpio.h"
 
@@ -89,51 +90,51 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
-  
-  OLED_Init();
-  
-  int32_t temp, humid;
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+  OLED_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   OLED_ShowString(20, 1, "IntelliDorm", OLED_8X16);
+  int32_t temp, humid, light;
   while (1)
   {
+    if (!shtc3_read_id(&hi2c1)) {
+      OLED_ShowString(1, 25, "SHTC3 not found", OLED_8X16);
+    }
+    else
+    {
+      OLED_ShowString(1, 17, "Temp: ", OLED_8X16);
+      OLED_ShowString(1, 33, "Humid: ", OLED_8X16);
+      if (shtc3_perform_measurements(&hi2c1, &temp, &humid))
+      {
+        OLED_ShowFloatNum(70, 17, temp/100.0, 2, 1, OLED_8X16);
+        if (temp>0)
+          OLED_ShowChar(70, 17, ' ', OLED_8X16);
+        OLED_DrawCircle(115, 20, 2, 0);
+        OLED_ShowChar(120, 17, 'C', OLED_8X16);
+        OLED_ShowNum(102, 33, humid, 2, OLED_8X16);
+        OLED_ShowChar(120, 33, '%', OLED_8X16);
+      }
+      else
+      {
+        OLED_ShowString(50, 17, "ERR", OLED_8X16);
+        OLED_ShowString(50, 33, "ERR", OLED_8X16);
+      }
+    }
+
+    OLED_ShowString(1, 49, "Light: ", OLED_8X16);
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    light = 4095 - HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+    OLED_ShowNum(80, 49, light, 4, OLED_8X16);
+    OLED_ShowString(112, 49, "lx", OLED_8X16);
+    OLED_Update();
+    HAL_Delay(100);
     /* USER CODE END WHILE */
-	  
-	  // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  // HAL_Delay(1000);
-	  if (!shtc3_read_id(&hi2c1))
-	  {
-		  OLED_ShowString(1, 33, "Sensor Not Found", OLED_8X16);
-		  OLED_Update();
-		  HAL_Delay(200);
-		  continue;
-	  }
-	  if (shtc3_perform_measurements(&hi2c1, &temp, &humid))
-	  {
-		  OLED_ShowString(1, 17, "Temp: ", OLED_8X16);
-		  OLED_ShowFloatNum(70, 17, temp/100.0, 2, 1, OLED_8X16);
-		  if(temp>0)OLED_ShowChar(70, 17, ' ', OLED_8X16);
-		  OLED_DrawCircle(115, 22, 2, 0);
-		  OLED_ShowString(120, 17, "C", OLED_8X16);
-		  OLED_ShowString(1, 33, "Humid: ", OLED_8X16);
-		  OLED_ShowNum(102, 33, humid, 2, OLED_8X16);
-		  OLED_ShowString(120, 33, "%", OLED_8X16);
-		  OLED_Update();
-	  }
-	  
-	  if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5)==0)
-	  {
-		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
-		  HAL_GPIO_LockPin(GPIOC, GPIO_PIN_13);
-	  }
-	  else 
-		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
-	  
-	  HAL_Delay(200);
 
     /* USER CODE BEGIN 3 */
   }
@@ -148,6 +149,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -174,6 +176,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
