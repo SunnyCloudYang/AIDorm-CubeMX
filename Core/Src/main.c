@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "OLED.h"
 #include "SHTC3.h"
+#include "SGP30.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +58,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void showTempAndHumid(uint8_t lineNum);
+void showLightStrength(uint8_t lineNum);
+void showAirQuality(uint8_t lineNum);
 /* USER CODE END 0 */
 
 /**
@@ -93,47 +96,33 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   OLED_Init();
+  sgp30_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  OLED_ShowString(20, 1, "IntelliDorm", OLED_8X16);
-  int32_t temp, humid, light;
+  uint8_t cnt = 0;
+  uint8_t interval = 10;
   while (1)
   {
-    if (!shtc3_read_id(&hi2c1)) {
-      OLED_ShowString(1, 25, "SHTC3 not found", OLED_8X16);
-    }
-    else
-    {
-      OLED_ShowString(1, 17, "Temp: ", OLED_8X16);
-      OLED_ShowString(1, 33, "Humid: ", OLED_8X16);
-      if (shtc3_perform_measurements(&hi2c1, &temp, &humid))
-      {
-        OLED_ShowFloatNum(70, 17, temp/100.0, 2, 1, OLED_8X16);
-        if (temp>0)
-          OLED_ShowChar(70, 17, ' ', OLED_8X16);
-        OLED_DrawCircle(115, 20, 2, 0);
-        OLED_ShowChar(120, 17, 'C', OLED_8X16);
-        OLED_ShowNum(102, 33, humid, 2, OLED_8X16);
-        OLED_ShowChar(120, 33, '%', OLED_8X16);
-      }
-      else
-      {
-        OLED_ShowString(50, 17, "ERR", OLED_8X16);
-        OLED_ShowString(50, 33, "ERR", OLED_8X16);
-      }
-    }
+	OLED_Clear();
+    if (cnt<interval)
+	{
+		OLED_ShowString(20, 0, "IntelliDorm", OLED_8X16);
+		showTempAndHumid(1);
+		showLightStrength(3);
+	}
+	else 
+	{
+		OLED_ShowString(8, 0, "SunnyCloudYang", OLED_8X16);
+		showLightStrength(1);
+		showAirQuality(2);
+	}
 
-    OLED_ShowString(1, 49, "Light: ", OLED_8X16);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-    light = 4095 - HAL_ADC_GetValue(&hadc1);
-    HAL_ADC_Stop(&hadc1);
-    OLED_ShowNum(80, 49, light, 4, OLED_8X16);
-    OLED_ShowString(112, 49, "lx", OLED_8X16);
     OLED_Update();
-    HAL_Delay(100);
+	cnt++;
+	if (cnt>2*interval) cnt=0;
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -188,6 +177,77 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void showTempAndHumid(uint8_t lineNum)
+{
+	int32_t temp, humid;
+	if (!shtc3_read_id(&hi2c1)) {
+      OLED_ShowString(1, lineNum*16+8, "SHTC3 not found", OLED_8X16);
+    }
+    else
+    {
+      OLED_ShowString(1, lineNum*16, "Temp: ", OLED_8X16);
+      OLED_ShowString(1, (lineNum+1)*16, "Humid: ", OLED_8X16);
+      if (shtc3_perform_measurements(&hi2c1, &temp, &humid))
+      {
+        OLED_ShowFloatNum(70, lineNum*16, temp/100.0, 2, 1, OLED_8X16);
+        if (temp>0)
+          OLED_ShowChar(70, lineNum*16, ' ', OLED_8X16);
+        OLED_DrawCircle(115, lineNum*16+3, 2, 0);
+        OLED_ShowChar(120, lineNum*16, 'C', OLED_8X16);
+        OLED_ShowNum(102, (lineNum+1)*16, humid, 2, OLED_8X16);
+        OLED_ShowChar(120, (lineNum+1)*16, '%', OLED_8X16);
+      }
+      else
+      {
+        OLED_ShowString(50, lineNum*16, "ERR", OLED_8X16);
+        OLED_ShowString(50, (lineNum+1)*16, "ERR", OLED_8X16);
+      }
+    }
+}
+
+void showLightStrength(uint8_t lineNum)
+{
+	uint32_t light;
+	uint8_t light_digits = 3;
+	
+	OLED_ShowString(1, lineNum*16, "Light: ", OLED_8X16);
+	
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    light = 4095 - HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+	
+	if (light>999) light_digits = 4;
+	
+    OLED_ShowNum(112-light_digits*8-2, lineNum*16, light, light_digits, OLED_8X16);
+    OLED_ShowString(112, lineNum*16, "Lx", OLED_8X16);
+}
+
+void showAirQuality(uint8_t lineNum)
+{
+	uint16_t CO2, TVOC;
+	
+	OLED_ShowString(1, lineNum*16, "CO :", OLED_8X16);
+	OLED_ShowChar(17, lineNum*16+8, '2', OLED_6X8);
+	OLED_ShowString(1, (lineNum+1)*16, "TVOC:", OLED_8X16);
+	
+	sgp30_read(&CO2, &TVOC);
+	
+	uint8_t CO2_DIGITS = 3, TVOC_DIGITS = 1;
+	
+	if (TVOC>9) TVOC_DIGITS = 2;
+	if (TVOC>99) TVOC_DIGITS = 3;
+	if (TVOC>999) TVOC_DIGITS = 4;
+	if (TVOC>9999) TVOC_DIGITS = 5;
+	if (CO2>999) CO2_DIGITS = 4;
+	if (CO2>9999) CO2_DIGITS = 5;
+	
+	OLED_ShowNum(104-CO2_DIGITS*8-2, lineNum*16, CO2, CO2_DIGITS, OLED_8X16);
+	OLED_ShowNum(104-TVOC_DIGITS*8-2, (lineNum+1)*16, TVOC, TVOC_DIGITS, OLED_8X16);
+	
+	OLED_ShowString(104, lineNum*16, "ppm", OLED_8X16);
+	OLED_ShowString(104, (lineNum+1)*16, "ppb", OLED_8X16);
+}
 
 /* USER CODE END 4 */
 

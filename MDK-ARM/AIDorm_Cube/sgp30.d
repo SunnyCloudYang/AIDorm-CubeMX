@@ -1,4 +1,7 @@
-aidorm_cube/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
+aidorm_cube/sgp30.o: ..\Core\Src\SGP30.c ..\Core\Inc\sgp30.h \
+  D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  ..\Core\Inc\i2c.h ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
@@ -6,7 +9,6 @@ aidorm_cube/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h \
   ..\Drivers\CMSIS\Include\core_cm3.h \
-  D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\Drivers\CMSIS\Include\cmsis_version.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
   ..\Drivers\CMSIS\Include\cmsis_armclang.h \
@@ -27,8 +29,4 @@ aidorm_cube/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h \
-  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\i2c.h ..\Core\Inc\gpio.h \
-  ..\Core\Inc\OLED.h ..\Core\Inc\OLED_Data.h ..\Core\Inc\SHTC3.h \
-  ..\Core\Inc\SGP30.h \
-  D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\stdio.h
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h

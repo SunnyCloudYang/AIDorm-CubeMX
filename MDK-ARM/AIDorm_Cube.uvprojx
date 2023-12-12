@@ -490,6 +490,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>SGP30.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\SGP30.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

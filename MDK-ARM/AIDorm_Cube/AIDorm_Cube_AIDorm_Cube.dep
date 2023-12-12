@@ -72,7 +72,7 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x6576F627)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x6576F627)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x6576F627)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x6576F627)
-F (../Core/Src/main.c)(0x6577EE40)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_AIDorm_Cube-ID:/Programmes/Keil5/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Programmes/Keil5/Keil/STM32F1xx_DFP/2.4.0/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o aidorm_cube/main.o -MD)
+F (../Core/Src/main.c)(0x65783825)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_AIDorm_Cube-ID:/Programmes/Keil5/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Programmes/Keil5/Keil/STM32F1xx_DFP/2.4.0/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o aidorm_cube/main.o -MD)
 I (..\Core\Inc\main.h)(0x6576F63A)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x6576F627)
 I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6577E04C)
@@ -109,6 +109,8 @@ I (..\Core\Inc\gpio.h)(0x6576F637)
 I (..\Core\Inc\OLED.h)(0x6577229B)
 I (..\Core\Inc\OLED_Data.h)(0x657732BD)
 I (..\Core\Inc\SHTC3.h)(0x6577C474)
+I (..\Core\Inc\SGP30.h)(0x65781B8A)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 F (../Core/Src/gpio.c)(0x6576F637)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_AIDorm_Cube-ID:/Programmes/Keil5/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Programmes/Keil5/Keil/STM32F1xx_DFP/2.4.0/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o aidorm_cube/gpio.o -MD)
 I (..\Core\Inc\gpio.h)(0x6576F637)
 I (..\Core\Inc\main.h)(0x6576F63A)
@@ -247,6 +249,40 @@ I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x6576F627)
 I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h)(0x6576F627)
 I (..\Drivers\CMSIS\Include\core_cm3.h)(0x6576F60B)
 I (D:\Programmes\Keil5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
+I (..\Drivers\CMSIS\Include\cmsis_version.h)(0x6576F60B)
+I (..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6576F60B)
+I (..\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6576F60B)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\arm_compat.h)(0x63884908)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\arm_acle.h)(0x63884908)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x6576F627)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\stddef.h)(0x63884908)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x6576F627)
+F (..\Core\Src\SGP30.c)(0x6578202F)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_AIDorm_Cube-ID:/Programmes/Keil5/ARM/CMSIS/5.9.0/CMSIS/Core/Include-ID:/Programmes/Keil5/Keil/STM32F1xx_DFP/2.4.0/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o aidorm_cube/sgp30.o -MD)
+I (..\Core\Inc\sgp30.h)(0x65781B8A)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
+I (D:\Programmes\Keil5\ARM\ARMCLANG\include\stdint.h)(0x63884908)
+I (..\Core\Inc\i2c.h)(0x6577E04A)
+I (..\Core\Inc\main.h)(0x6576F63A)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x6576F627)
+I (..\Core\Inc\stm32f1xx_hal_conf.h)(0x6577E04C)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x6576F627)
+I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x6576F627)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x6576F627)
+I (..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h)(0x6576F627)
+I (..\Drivers\CMSIS\Include\core_cm3.h)(0x6576F60B)
 I (..\Drivers\CMSIS\Include\cmsis_version.h)(0x6576F60B)
 I (..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x6576F60B)
 I (..\Drivers\CMSIS\Include\cmsis_armclang.h)(0x6576F60B)
