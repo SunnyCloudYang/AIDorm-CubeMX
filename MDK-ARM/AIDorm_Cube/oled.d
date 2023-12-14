@@ -28,6 +28,7 @@ aidorm_cube/oled.o: ..\Core\Src\oled.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\Core\Inc\OLED.h ..\Core\Inc\OLED_Data.h \
   D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\string.h \
   D:\Programmes\Keil5\ARM\ARMCLANG\Bin\..\include\math.h \

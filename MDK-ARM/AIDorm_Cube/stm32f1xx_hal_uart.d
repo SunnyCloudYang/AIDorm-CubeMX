@@ -1,5 +1,6 @@
-aidorm_cube/shtc3.o: ..\Core\Src\SHTC3.c ..\Core\Inc\shtc3.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
+aidorm_cube/stm32f1xx_hal_uart.o: \
+  ..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h \
